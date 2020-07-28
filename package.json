@@ -1,0 +1,43 @@
+{
+  "name": "google-map-app",
+  "version": "1.0.0",
+  "description": "React Example for Google Map",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --config frontend/config/webpack.app.prod.config.js"
+  },
+  "author": "Katsuyoshi Yabe",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "google-map-react": "^1.1.7",
+    "history": "^5.0.0",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-intl": "^5.0.2",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^26.1.0",
+    "redux-saga-test-plan": "^4.0.0-beta.2",
+    "regenerator-runtime": "^0.13.5",
+    "uglify": "^0.1.5",
+    "uglify-es-webpack-plugin": "^0.10.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^4.2.2"
+  }
+}

@@ -1,0 +1,7 @@
+.log
+/node_modules
+__pycache__
+/flaskr/static/assets
+!/flaskr/static/assets/.keep
+/flaskr/db/*
+!/flaskr/db/.keep
