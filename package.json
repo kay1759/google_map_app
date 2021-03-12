@@ -10,7 +10,7 @@
   "author": "Katsuyoshi Yabe",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "google-map-react": "^1.1.7",
     "history": "^5.0.0",
     "immutable": "^4.0.0-rc.12",
