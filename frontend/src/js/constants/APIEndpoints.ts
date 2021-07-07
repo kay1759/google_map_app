@@ -1,3 +1,3 @@
-const APIROOT = "/api/" + window.locale;
+const APIROOT = "/api/" + (window as any).locale;
 
 export const LOCATIONS     = APIROOT + "/locations";

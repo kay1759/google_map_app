@@ -4,8 +4,8 @@ configure({ adapter: new Adapter() });
 
 import React from 'react'
 
-import SelectFilter from "../../../../src/js/domains/common/SelectFilter.jsx";
-import { mountWithIntl } from "../../intlHelper.js";
+import SelectFilter from "../../../../src/js/domains/common/SelectFilter";
+import { mountWithIntl } from "../../intlHelper";
 
 const categories = [
     {
@@ -23,9 +23,13 @@ const category = {
     title: "Building"
 };
 
+const onChange_ = (id: number) => {
+    null;
+}
+
 describe('<SelectFilter />', () => {
 
-    const wrapper = mountWithIntl(<SelectFilter name="location_filter" title="location" value={category.id} options={categories}/>);
+    const wrapper = mountWithIntl(<SelectFilter name="location_filter" value={category.id} options={categories} onChange={onChange_} />);
 
     it('should render 1 select components', () => {
 	expect(wrapper.find('select').length).toBe(1);
@@ -36,7 +40,7 @@ describe('<SelectFilter />', () => {
     });
 
     it('should have the value of "" in 1st option', () => {
-	expect(wrapper.find('option').get(0).props.value).toBe("");
+	expect(wrapper.find('option').get(0).props.value).toBe("0");
     });
 
     it('should have the label of including "Type" in 1st option', () => {
@@ -44,7 +48,7 @@ describe('<SelectFilter />', () => {
     });
 
     it('should have the value of "1" in 2nd option', () => {
-	expect(wrapper.find('option').get(1).props.value).toBe(1);
+	expect(wrapper.find('option').get(1).props.value).toBe("1");
     });
 
     it('should have the label of "Building" in 2nd option', () => {
@@ -52,7 +56,7 @@ describe('<SelectFilter />', () => {
     });
 
     it('should have the value of "2" in 3rd option', () => {
-	expect(wrapper.find('option').get(2).props.value).toBe(2);
+	expect(wrapper.find('option').get(2).props.value).toBe("2");
     });
 
     it('should have the label of "Spot" in 3rd option', () => {

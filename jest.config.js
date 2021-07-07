@@ -1,13 +1,16 @@
 module.exports = {
     "moduleFileExtensions": [
+	"ts",
+	"tsx",
 	"js",
 	"jsx"
     ],
     "transform": {
-	"^.+\\.(js|jsx)$": "babel-jest"
+	"^.+\\.(ts|tsx)$": "ts-jest"
     },
     "testMatch": [
-	"**/*.test.+(js|jsx)"
+	"**/*.test.+(ts|tsx)"
     ],
-    "coverageDirectory": "flaskr/static/coverage"
+    "coverageDirectory": "flaskr/static/coverage",
+    "testEnvironment": "jsdom"
 };

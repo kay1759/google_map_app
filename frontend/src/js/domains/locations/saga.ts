@@ -5,8 +5,8 @@ import * as APIEndpoints from "../../constants/APIEndpoints";
 import { getAjax } from "../../utils/ajax";
 import { receiveResources } from "./actionCreators";
 
-export function* loadResources(action) {
-    const json = yield call(getAjax, APIEndpoints.LOCATIONS, { loc_type: action.category } );
+function* loadResources() {
+    const json: TAssociative = yield call(getAjax, APIEndpoints.LOCATIONS, {} );
 
     if (json) {
 	yield put(receiveResources(json));

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
     mode: 'development',
     entry: {
-        "app": "./frontend/src/js/app.jsx",
+        "app": "./frontend/src/js/app.tsx",
     },
 
     output: {
@@ -14,10 +14,14 @@ module.exports = {
 
     module: {
 	    rules: [
-	        {   test: /\.js[x]?$/,
+	        {   test: /\.ts[x]?$/,
 		    exclude: /node_modules/,
-		    loader: "babel-loader"
+		    loader: "ts-loader"
 	        }
         ]
+    },
+
+    resolve: {
+	extensions: [".js",".ts", ".tsx"]
     }
 };

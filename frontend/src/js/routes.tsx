@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { IntlProvider } from "react-intl";
 
-import Locations from "./domains/locations/container";
+import Locations from "./domains/locations/Resources";
 import store from "./store";
 import ja_JP from "./constants/ja_JP.json";
 import en_AU from "./constants/en_AU.json";
 
-const locale = window.locale;
-const chooseLocale = (locale) => {
+const locale: string = (window as any).locale;
+const chooseLocale = (locale: string) => {
     switch(locale) {
 	case 'en':
 	    return en_AU
