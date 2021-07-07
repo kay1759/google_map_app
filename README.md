@@ -7,7 +7,7 @@ An example of Google Map App using React. An api server uses python flask.
     git clone git@github.com:kay1759/google_map_app.git
     cd google_map_app
 	npm install
-	** set your "Google Key" in frontend/src/js/constants/Config.js
+	** set your "Google Key" in frontend/src/js/constants/Config.ts
     npm run build
     python3 db_setup.py
 
