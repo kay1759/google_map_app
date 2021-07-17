@@ -2,6 +2,11 @@
 
 An example of Google Map App using React. An api server uses python flask.
 
+## Dependencies
+	Flask
+	grahene
+	Flask-GraphQL
+
 ## Application Installation Instructions:
 
     git clone git@github.com:kay1759/google_map_app.git

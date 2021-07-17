@@ -1,9 +1,29 @@
 import { LOCATION } from "../../constants/ActionTypes";
 
+const locale: string = (window as any).locale;
+
 export const loadResources = () => {
+    const query: string = `{ 
+  categories(locale: "${locale}")
+  {
+    id
+    title
+  }
+  resources(locale: "${locale}")
+  {
+    id
+    title
+    address
+    image
+    locTypeId
+    latitude
+    longitude
+  }
+}`
+    
     return {
 	type: LOCATION.LOAD_RESOURCES,
-	payload: null
+	query: query
     };
 }
 

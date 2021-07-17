@@ -5,8 +5,8 @@ class AjaxClass {
     getAjax(url: string, params: TAssociative, func: (res: TAssociative) => TAssociative, errfunc: (error: TAssociative) => TAssociative, options: TAssociative = {}) {
 	options['params'] = params;
 	return axios.get(url, options)
-	    .then(function(res: {data: TAssociative}) {
-		return func(res.data);
+	    .then(function(res: {data: {data: TAssociative}}) {
+		return func(res.data.data);
 	    })
 	    .catch(function(error: TAssociative) {
 		return errfunc(error);
@@ -15,8 +15,8 @@ class AjaxClass {
 
     postAjax(url: string, params: TAssociative, func: (res: TAssociative) => TAssociative, errfunc: (error: TAssociative) => TAssociative, options: TAssociative = {}) {
 	return axios.post(url, params, options)
-	    .then(function(res: {data: TAssociative}) {
-		return func(res.data);
+	    .then(function(res: {data: {data: TAssociative}}) {
+		return func(res.data.data);
 	    })
 	    .catch(function(error: TAssociative) {
 		return errfunc(error);
@@ -25,8 +25,8 @@ class AjaxClass {
 
     putAjax(url: string, params: TAssociative, func: (res: TAssociative) => TAssociative, errfunc: (error: TAssociative) => TAssociative, options: TAssociative = {}) {
 	return axios.put(url, params, options)
-	    .then(function(res: {data: TAssociative}) {
-		return func(res.data);
+	    .then(function(res: {data: {data: TAssociative}}) {
+		return func(res.data.data);
 	    })
 	    .catch(function(error: TAssociative) {
 		return errfunc(error);
@@ -35,8 +35,8 @@ class AjaxClass {
 
     patchAjax(url: string, params: TAssociative, func: (res: TAssociative) => TAssociative, errfunc: (error: TAssociative) => TAssociative, options: TAssociative = {}) {
 	return axios.patch(url, params, options)
-	    .then(function(res: {data: TAssociative}) {
-		return func(res.data);
+	    .then(function(res: {data: {data: TAssociative}}) {
+		return func(res.data.data);
 	    })
 	    .catch(function(error: TAssociative) {
 		return errfunc(error);
@@ -45,8 +45,8 @@ class AjaxClass {
 
     deleteAjax(url: string, params: TAssociative, func: (res: TAssociative) => TAssociative, errfunc: (error: TAssociative) => TAssociative, options: TAssociative = {}) {
 	return axios.delete(url, options)
-	    .then(function(res: {data: TAssociative}) {
-		return func(res.data);
+	    .then(function(res: {data: {data: TAssociative}}) {
+		return func(res.data.data);
 	    })
 	    .catch(function(error: TAssociative) {
 		return errfunc(error);

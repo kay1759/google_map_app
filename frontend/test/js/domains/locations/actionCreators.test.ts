@@ -22,7 +22,7 @@ describe("Locations actionCreators", () => {
 		id: 1,
 		image: "/locations/botanic_garden.jpg",
 		latitude: -37.8300003,
-		loc_type_id: 2,
+		locTypeId: 2,
 		longitude: 144.976088,
 		title: "Royal Botanic Gardens"
 	    },
@@ -31,7 +31,7 @@ describe("Locations actionCreators", () => {
 		id: 2,
 		image: "/locations/state_library.jpg",
 		latitude: -37.8098044,
-		loc_type_id: 1,
+		locTypeId: 1,
 		longitude: 144.9629957,
 		title: "State Library Victoria"
 	    }]

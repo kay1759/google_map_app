@@ -8,7 +8,7 @@ describe("Locations reducer", () => {
 	categories: [],
 	category: "",
 	resources: [],
-	resource:  {id: 0, loc_type_id: 0, title: "", longitude: "0.0", latitude: "0.0", image: "", address: "" },
+	resource:  {id: 0, locTypeId: 0, title: "", longitude: "0.0", latitude: "0.0", image: "", address: "" },
 	resourcesAll: []
     });
 
@@ -16,7 +16,7 @@ describe("Locations reducer", () => {
 	categories: [],
 	category: "",
 	resources: [],
-	resource:  {id: 0, loc_type_id: 0, title: "", longitude: "0.0", latitude: "0.0", image: "", address: "" },
+	resource:  {id: 0, locTypeId: 0, title: "", longitude: "0.0", latitude: "0.0", image: "", address: "" },
 	resourcesAll: []
     });
 

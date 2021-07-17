@@ -1,20 +1,80 @@
-from flask import Flask,jsonify
+from flask import Flask
+from flask_graphql import GraphQLView
+from graphene import ObjectType, String, Int, Float, ID, Field, List, Schema
 
 from .db import get_db, close_connection
 
+class Location(ObjectType):
+    id = Int()
+    title = String()
+    image = String()
+    address = String()
+    loc_type_id = Int()
+    latitude = Float()
+    longitude = Float()
+
+    def resolve_id(parent, info):
+        return parent.id
+
+    def resolve_title(parent, info):
+        return parent.title
+
+    def resolve_image(parent, info):
+        return parent.image
+
+    def resolve_address(parent, info):
+        return parent.address
+
+    def resolve_loc_type_id(parent, info):
+        return parent.loc_type_id
+
+    def resolve_latitude(parent, info):
+        return parent.latitude
+
+    def resolve_longitude(parent, info):
+        return parent.longitude
+
+
+
+class Category(ObjectType):
+    id = Int()
+    title = String()
+
+    def resolve_id(parent, info):
+        return parent.id
+
+    def resolve_title(parent, info):
+        return parent.title
+
+
+
+class Query(ObjectType):
+    categories = Field(List(Category), locale=String(default_value="en"))
+    resources = Field(List(Location), locale=String(default_value="en"))
+
+    def resolve_categories(self, info, locale):
+        con = get_db()
+        cur = con.cursor()
+        return map(
+            lambda elem: Category(id=elem["id"], title=elem["title"]),
+            get_types(cur, locale))
+
+    def resolve_resources(self, info, locale):
+        con = get_db()
+        cur = con.cursor()
+        return map(
+            lambda elem: Location(id=elem["id"], title=elem["title"], image=elem["image"], address=elem["address"], loc_type_id=elem["loc_type_id"], latitude=elem["latitude"], longitude=elem["longitude"]),
+            get_locations(cur, locale))
+ 
+
+
 app = Flask(__name__, static_url_path='')
 
-@app.route('/api/<locale>/locations')
-def api(locale):
-    if locale != 'ja':
-        locale = 'en'
-    con = get_db()
-    cur = con.cursor()
-    loc_types = get_types(cur, locale)
-    locations = get_locations(cur, locale)
-    data = {"categories": list(loc_types), "resources": list(locations)}
-
-    return jsonify(data)
+schema = Schema(query=Query)
+app.add_url_rule(
+    '/graphql',
+    view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True)
+)
 
 
 

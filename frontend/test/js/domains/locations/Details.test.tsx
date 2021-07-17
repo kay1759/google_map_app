@@ -9,7 +9,7 @@ import Details from "../../../../src/js/domains/locations/Details";
 
 const resource = {
     id: 0,
-    loc_type_id: 0,
+    locTypeId: 0,
     title: "Title 1",
     longitude: "-100.0",
     latitude: "99.0",

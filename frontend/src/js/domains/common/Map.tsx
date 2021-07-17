@@ -13,7 +13,7 @@ const Marker = (params: TAssociative): JSX.Element => (
 	left: -K_WIDTH / 2,
 	top: -K_HEIGHT
     }}>
-	<img src={ "/marker_" + params.loc_type_id + ".svg" }
+	<img src={ "/marker_" + params.locTypeId + ".svg" }
     style={{
 	width: K_WIDTH,
 	height: K_HEIGHT,
@@ -40,7 +40,7 @@ const Map = (props: TProps): JSX.Element => {
 			key = {point.id}
 			lat = {point.latitude}
 			lng = {point.longitude}
-			loc_type_id = {point.loc_type_id}
+			locTypeId = {point.locTypeId}
 		    />)})}
         </GoogleMapReact>
     );
