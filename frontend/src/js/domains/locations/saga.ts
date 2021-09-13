@@ -6,12 +6,13 @@ import { getAjax } from "../../utils/ajax";
 import { loadResources, receiveResources } from "./actionCreators";
 
 function* handleLoadResources(action: ReturnType<typeof loadResources>) {
-    const json: TAssociative = yield call(getAjax, APIEndpoints.GRAPHQL, { query: action.query});
+  const json: TAssociative = yield call(getAjax, APIEndpoints.GRAPHQL, {
+    query: action.query,
+  });
 
-    if (json) {
-	yield put(receiveResources(json));
-    } else {
-    }
+  if (json) {
+    yield put(receiveResources(json));
+  }
 }
 
 export default [takeEvery(LOCATION.LOAD_RESOURCES, handleLoadResources)];

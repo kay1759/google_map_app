@@ -3,7 +3,7 @@ import { LOCATION } from "../../constants/ActionTypes";
 const locale: string = (window as any).locale;
 
 export const loadResources = () => {
-    const query: string = `{ 
+  const query = `{ 
   categories(locale: "${locale}")
   {
     id
@@ -19,32 +19,32 @@ export const loadResources = () => {
     latitude
     longitude
   }
-}`
-    
-    return {
-	type: LOCATION.LOAD_RESOURCES,
-	query: query
-    };
-}
+}`;
+
+  return {
+    type: LOCATION.LOAD_RESOURCES,
+    query: query,
+  };
+};
 
 export const receiveResources = (json: TAssociative) => {
-    return {
-	type: LOCATION.RECEIVE_RESOURCES,
-	categories: json.categories,
-	resources: json.resources
-    };
-}
+  return {
+    type: LOCATION.RECEIVE_RESOURCES,
+    categories: json.categories,
+    resources: json.resources,
+  };
+};
 
 export const select = (resource: TAssociative) => {
-    return {
-	type: LOCATION.SELECT_RESOURCE,
-	resource: resource
-    }
-}
+  return {
+    type: LOCATION.SELECT_RESOURCE,
+    resource: resource,
+  };
+};
 
 export const filtering = (categoryId: number) => {
-    return {
-	type: LOCATION.FILTERING_RESOURCE,
-	categoryId: categoryId
-    }
-}
+  return {
+    type: LOCATION.FILTERING_RESOURCE,
+    categoryId: categoryId,
+  };
+};

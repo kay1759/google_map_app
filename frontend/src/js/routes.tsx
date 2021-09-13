@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { IntlProvider } from "react-intl";
 
@@ -10,15 +9,15 @@ import en_AU from "./constants/en_AU.json";
 
 const locale: string = (window as any).locale;
 const chooseLocale = (locale: string) => {
-    switch(locale) {
-	case 'en':
-	    return en_AU
-	case 'ja':
-	    return ja_JP
-	default:
-	    return en_AU
-    }
-}
+  switch (locale) {
+    case "en":
+      return en_AU;
+    case "ja":
+      return ja_JP;
+    default:
+      return en_AU;
+  }
+};
 
 export default (
   <Provider store={store}>
