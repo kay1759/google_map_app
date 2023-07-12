@@ -4,8 +4,13 @@ An example of Google Map App using React. An api server uses python flask.
 
 ## Application Installation Instructions:
 
+    python -m venv env
+    cd env
+    source bin/activate
+  
     git clone git@github.com:kay1759/google_map_app.git
     cd google_map_app
+    pip install -r requirements.txt
 	npm install
 	** set your "Google Key" in frontend/src/js/constants/Config.ts
     npm run build
@@ -32,15 +37,6 @@ An example of Google Map App using React. An api server uses python flask.
 ```
 npm run test
 ```
-
-## Discussion
-* 'npm run build' command creates javascripts '0.js and 1.js'  on production mode.
-  if you would like to check javascript file on development mode, you can use
-  ```
-  $(npm bin)/webpack --config frontend/config/webpack.app.config.js
-  ```
-  This command create flask/static/assets/app.js.
-  And then update flaskr/static/index.html and flaskr/static/ja/index.html.
 
 ## Licence
 [MIT]
