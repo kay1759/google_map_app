@@ -1,17 +1,27 @@
 import os
-import sqlite3
+import pymysql
 from flask import g
+import toml
 
-DATABASE = os.path.join(os.path.dirname(__file__), 'db', 'map.sqlite3')
+with open(os.path.join(os.path.dirname(__file__), 'database.toml')) as f:
+    obj = toml.load(f)
 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-        db.row_factory = sqlite3.Row
-    return db
+def get_connection():
+    conn = getattr(g, '_database', None)
+    if conn is None:
+        cursorClass = pymysql.cursors.DictCursor
+
+        conn = pymysql.connect(host=obj['host'],
+                               port=obj['port'],
+                               user=obj['user'],
+                               password=obj['password'],
+                               db=obj['db'],
+                               charset=obj['charset'],
+                               cursorclass=cursorClass)
+
+    return conn
 
 def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+    conn = getattr(g, '_database', None)
+    if conn is not None:
+        conn.close()

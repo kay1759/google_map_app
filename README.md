@@ -14,6 +14,8 @@ An example of Google Map App using React. An api server uses python flask.
 	npm install
 	** set your "Google Key" in frontend/src/js/constants/Config.ts
     npm run build
+    
+    docker-compose up -d
     python3 db_setup.py
 
 ## Operating Instructions:
@@ -37,7 +39,19 @@ An example of Google Map App using React. An api server uses python flask.
 ```
 npm run test
 ```
+## Discussion
+* The command that stop database-docker is as below:
+  ```
+  docker-compose down
+  ```
+* The docker container maps the mysql port to locathost:3307
 
+* if you would like to change database setting, you have tp update
+  ```
+  ./docker-compose.yml
+  ./flaskr/database.toml
+  ```
+  
 ## Licence
 [MIT]
 

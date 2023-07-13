@@ -1,14 +1,13 @@
 import os
-import sqlite3
-
-DATABASE = os.path.join(os.path.dirname(__file__), 'flaskr', 'db', 'map.sqlite3')
+import pymysql
+import toml
 
 create_table_data = {
-    "languages": "id integer Primary key AUTOINCREMENT, name test, locale text, isdefault integer",
-    "loc_types": "id integer Primary key AUTOINCREMENT",
-    "loc_type_descriptions": "id integer Primary key AUTOINCREMENT, loc_type_id integer, lang_id integer, title string",
-    "locations": "id integer Primary key AUTOINCREMENT, loc_type_id integer, latitude float, longitude float, image text",
-    "location_descriptions": "id integer Primary key AUTOINCREMENT, location_id integer, lang_id integer, title text, address text, context text"
+    "languages": "`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL, `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL, `isdefault` tinyint(1) NOT NULL, CONSTRAINT `languages_pk` PRIMARY KEY (`id`)",
+    "loc_types": "`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, CONSTRAINT `loc_types_pk` PRIMARY KEY (`id`)",
+    "loc_type_descriptions": "`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, `loc_type_id` int(11) UNSIGNED NOT NULL, `lang_id` int(11) UNSIGNED NOT NULL, `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, CONSTRAINT `loc_type_descs_pk` PRIMARY KEY (`id`)",
+    "locations": "`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, `loc_type_id` int(11) UNSIGNED NOT NULL, `latitude` decimal(11,7) NOT NULL, `longitude` decimal(11,7) NOT NULL, `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, CONSTRAINT `locations_pk` PRIMARY KEY (`id`)",
+    "location_descriptions": "`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, `location_id` int(11) UNSIGNED NOT NULL, `lang_id` int(11) UNSIGNED NOT NULL, `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL, CONSTRAINT `location_descs_pk` PRIMARY KEY (`id`)"
 }
 
 insert_data = {
@@ -67,17 +66,38 @@ insert_data = {
         "24, 12, 2, 'メルボルン・セントラル', 'Cnr La Trobe St & Swanston St, Melbourne VIC 3000', ''"]
 }
 
-
 if __name__ == '__main__':
-    con = sqlite3.connect(DATABASE)
-    cur = con.cursor()
 
-    for k, v in create_table_data.items():
-        cur.execute(f"CREATE TABLE {k} ({v});")
+    with open(os.path.join(os.path.dirname(__file__), 'flaskr', 'database.toml')) as f:
+        obj = toml.load(f)
 
-    for k, v in insert_data.items():
-        for val in v:
-            cur.execute(f"INSERT INTO {k} VALUES ({val});")
+    cursorClass = pymysql.cursors.DictCursor
 
-    con.commit()
-    con.close()
+    conn = pymysql.connect(host=obj['host'],
+                           port=obj['port'],
+                           user=obj['user'],
+                           password=obj['password'],
+                           db=obj['db'],
+                           charset=obj['charset'],
+                           cursorclass=cursorClass)
+
+    try:
+
+        cur = conn.cursor()
+
+        for key, val in create_table_data.items():
+            cur.execute(f"CREATE TABLE {key} ({val}) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;")
+
+        for key, vals in insert_data.items():
+            for val in vals:
+                cur.execute(f"INSERT INTO {key} VALUES ({val});")
+
+        cur.execute("commit;")
+
+        print("Data Setup Completed !")
+
+    except Exception as e:
+        print("Exeception occured:{}".format(e))
+
+    finally:
+        conn.close()
