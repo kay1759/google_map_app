@@ -68,7 +68,7 @@ insert_data = {
 
 if __name__ == '__main__':
 
-    with open(os.path.join(os.path.dirname(__file__), 'flaskr', 'database.toml')) as f:
+    with open(os.path.join(os.path.dirname(__file__), 'database.toml')) as f:
         obj = toml.load(f)
 
     cursorClass = pymysql.cursors.DictCursor

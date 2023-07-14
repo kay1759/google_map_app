@@ -1,6 +1,6 @@
 # React Google Map App
 
-An example of Google Map App using React. An api server uses python flask.
+An example of Google Map App using React. An api server uses python FastAPI.
 
 ## Application Installation Instructions:
 
@@ -22,21 +22,23 @@ An example of Google Map App using React. An api server uses python flask.
 
 ### Usage
 
-    python3 manage.py
+    uvicorn main:app (--reload)
 
     connet with browzer
-    http://<server name>:5000/
+    http://<server name>:8000/ or
+    http://<server name>:8000/ja/
 
 
 ### Valid URL
-    /index.html
-    /ja/index.html
+    /
+    /ja/
 
-* / or /ja/ is invalid.
-* index.html and /ja/index.html are static file.
+* /index.html and /ja/index.html are valid.
+* /index.html and /ja/index.html are static file.
 
 ## Tests
 ```
+pytest
 npm run test
 ```
 ## Discussion
@@ -49,7 +51,7 @@ npm run test
 * if you would like to change database setting, you have tp update
   ```
   ./docker-compose.yml
-  ./flaskr/database.toml
+  ./database.toml
   ```
   
 ## Licence
