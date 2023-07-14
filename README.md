@@ -8,7 +8,7 @@ An example of Google Map App using React. An api server uses python FastAPI.
     cd env
     source bin/activate
   
-    git clone git@github.com:kay1759/google_map_app.git
+    git clone https://github.com/kay1759/google_map_app.git
     cd google_map_app
     pip install -r requirements.txt
 	npm install

@@ -8,7 +8,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve('./flaskr/static/assets'),
+        path: path.resolve('./static/assets'),
         filename: "[name].js"
     },
 
